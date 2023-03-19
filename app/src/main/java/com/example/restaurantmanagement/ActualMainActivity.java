@@ -9,7 +9,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ActualMainActivity extends AppCompatActivity {
 
-    FloatingActionButton fab_home, fab_profile;
+    FloatingActionButton fab_home, fab_profile, fab_new_order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,13 @@ public class ActualMainActivity extends AppCompatActivity {
 
         fab_profile.setOnClickListener(v -> {
             ProfileFragment fmt = new ProfileFragment();
+            FragmentTransaction fmtTxn = getSupportFragmentManager().beginTransaction();
+            fmtTxn.replace(R.id.fragment_layout, fmt);
+            fmtTxn.commit();
+        });
+
+        fab_new_order.setOnClickListener(v -> {
+            NewOrder fmt = new NewOrder();
             FragmentTransaction fmtTxn = getSupportFragmentManager().beginTransaction();
             fmtTxn.replace(R.id.fragment_layout, fmt);
             fmtTxn.commit();
