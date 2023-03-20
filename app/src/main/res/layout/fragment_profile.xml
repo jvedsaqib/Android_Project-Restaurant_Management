@@ -12,12 +12,55 @@
 
         >
 
+        <ImageView
+            android:id="@+id/QRImg"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+
+            android:src="@color/accent"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+
+            />
+
         <TextView
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Profile Fragment"
 
-            android:layout_centerInParent="true"
+            android:layout_below="@id/QRImg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+
+            android:text="NAME"
+            android:textSize="30dp"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_QR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="QR"
+
+            android:layout_below="@id/tv_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_sign_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Sign out"
+
+            android:layout_below="@id/btn_QR"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
 
             />
     </RelativeLayout>

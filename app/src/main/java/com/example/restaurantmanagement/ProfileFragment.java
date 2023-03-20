@@ -1,12 +1,18 @@
 package com.example.restaurantmanagement;
 
+import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +20,16 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+
+    //
+
+    ImageView QRImg;
+
+    TextView tv_name;
+
+    AppCompatButton btn_QR, btn_sign_out;
+
+    //
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,6 +69,19 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        QRImg = getView().findViewById(R.id.QRImg);
+
+        tv_name = getView().findViewById(R.id.tv_name);
+
+        btn_QR = getView().findViewById(R.id.btn_QR);
+        btn_sign_out = getView().findViewById(R.id.btn_sign_out);
+
+        btn_QR.setOnClickListener(v -> {
+            Toast.makeText(getActivity(), "QR FRAGMENT", Toast.LENGTH_SHORT).show();
+        });
+
+
     }
 
     @Override
