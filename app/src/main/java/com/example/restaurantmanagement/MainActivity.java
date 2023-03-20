@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 startActivity(new Intent(MainActivity.this,
-                        Home.class));
+                        Sign_in.class));
                 finish();
             }
         }, SPLASH_SCREEN_TIME_OUT);
