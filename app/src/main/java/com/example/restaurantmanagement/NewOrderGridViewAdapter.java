@@ -10,11 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class NewOrderGridViewAdapter extends ArrayAdapter<NewOrderGridView> {
 
 
-    public NewOrderGridViewAdapter(@NonNull Context context, int resource) {
-        super(context, resource);
+    public NewOrderGridViewAdapter(@NonNull Context context, ArrayList<NewOrderGridView> dataModalArrayList) {
+        super(context,0, dataModalArrayList);
     }
 
     @NonNull

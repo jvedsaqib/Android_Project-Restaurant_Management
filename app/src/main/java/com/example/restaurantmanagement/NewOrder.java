@@ -8,6 +8,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,6 +22,10 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class NewOrder extends Fragment {
+
+    GridView gridView;
+    ArrayList<NewOrderGridView> dataList;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,6 +65,41 @@ public class NewOrder extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        gridView = getActivity().findViewById(R.id.gridView);
+
+        dataList = new ArrayList<>();
+
+        loadDataInGridView();
+
+
+    }
+
+    private void loadDataInGridView() {
+
+        FirebaseDatabase.getInstance().getReference("food-items").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                String item_name = "";
+                String item_price = "";
+                String piecesorqty = "";
+
+                for(DataSnapshot i : dataSnapshot.getChildren()){
+                    item_name = i.getKey();
+                    for(DataSnapshot iChild : i.getChildren()){
+                        item_price = iChild.child("price").getValue().toString();
+                        piecesorqty = iChild.child("piecesorqty").getValue().toString();
+
+                        dataList.add(new NewOrderGridView(item_name, item_price, piecesorqty, ""));
+
+                    }
+                }
+
+                NewOrderGridViewAdapter adapter = new NewOrderGridViewAdapter(getContext(), dataList);
+                gridView.setAdapter(adapter);
+            }
+        });
+
     }
 
     @Override
