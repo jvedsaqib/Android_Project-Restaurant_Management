@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
  */
 public class NewOrder extends Fragment {
 
+    View view;
     GridView gridView;
     ArrayList<NewOrderGridView> dataList;
 
@@ -66,7 +68,7 @@ public class NewOrder extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        gridView = getActivity().findViewById(R.id.gridView);
+        //gridView = getActivity().findViewById(R.id.gridView);
 
         dataList = new ArrayList<>();
 
@@ -85,17 +87,28 @@ public class NewOrder extends Fragment {
                 String piecesorqty = "";
 
                 for(DataSnapshot i : dataSnapshot.getChildren()){
-                    item_name = i.getKey();
+                    item_name = i.getKey().toString();
+                    Log.d("item_name", i.getKey().toString());
+
+                    item_name = i.getKey().toString();
                     for(DataSnapshot iChild : i.getChildren()){
-                        item_price = iChild.child("price").getValue().toString();
-                        piecesorqty = iChild.child("piecesorqty").getValue().toString();
-
-                        dataList.add(new NewOrderGridView(item_name, item_price, piecesorqty, ""));
-
+                       if(iChild.getKey().equals("piecesorqty")) {
+                           piecesorqty = iChild.getValue().toString();
+                           Log.d("piecesorqty", iChild.getKey().toString() + " " + iChild.getValue().toString());
+                       }
+                        if(iChild.getKey().equals("price")) {
+                            item_price = iChild.getValue().toString();
+                            Log.d("price", iChild.getKey().toString() + " " + iChild.getValue().toString());
+                        }
                     }
+                    Log.d("Datalist", item_name + " " + item_price + " " + piecesorqty);
+                    dataList.add(new NewOrderGridView(item_name, item_price, piecesorqty, ""));
                 }
 
-                NewOrderGridViewAdapter adapter = new NewOrderGridViewAdapter(getContext(), dataList);
+                Log.d("getContext", getActivity().toString());
+                Log.d("Datalist list", dataList.get(0).getItemName());
+                NewOrderGridViewAdapter adapter = new NewOrderGridViewAdapter(getActivity(), dataList);
+                Log.d("adapter", adapter.toString());
                 gridView.setAdapter(adapter);
             }
         });
@@ -106,6 +119,10 @@ public class NewOrder extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_order, container, false);
+        View view = inflater.inflate(R.layout.fragment_new_order, container, false);
+        gridView = view.findViewById(R.id.gridView);
+
+        return view;
+//        return inflater.inflate(R.layout.fragment_new_order, container, false);
     }
 }

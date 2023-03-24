@@ -70,16 +70,9 @@ public class ProfileFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        QRImg = getView().findViewById(R.id.QRImg);
 
-        tv_name = getView().findViewById(R.id.tv_name);
 
-        btn_QR = getView().findViewById(R.id.btn_QR);
-        btn_sign_out = getView().findViewById(R.id.btn_sign_out);
 
-        btn_QR.setOnClickListener(v -> {
-            Toast.makeText(getActivity(), "QR FRAGMENT", Toast.LENGTH_SHORT).show();
-        });
 
 
     }
@@ -88,6 +81,20 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        QRImg = view.findViewById(R.id.QRImg);
+
+        tv_name = view.findViewById(R.id.tv_name);
+
+        btn_QR = view.findViewById(R.id.btn_QR);
+        btn_sign_out = view.findViewById(R.id.btn_sign_out);
+
+        btn_QR.setOnClickListener(v -> {
+            Toast.makeText(getActivity(), "QR FRAGMENT", Toast.LENGTH_SHORT).show();
+        });
+
+        return view;
     }
 }

@@ -10,3 +10,6 @@ Work on new order fragment
 new order fragment gridViewAdapter
 24-03-2023
 will implement loadDataInGridView() function
+25-03-2023
+data is getting loaded on new_order fragment
+

@@ -9,7 +9,7 @@ import android.view.WindowManager;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int SPLASH_SCREEN_TIME_OUT = 3000;
+    private static final int SPLASH_SCREEN_TIME_OUT = 500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
